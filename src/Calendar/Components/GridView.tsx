@@ -11,7 +11,7 @@ export default function GridView(props: any) {
     error,
     data,
     months,
-    selected,
+    selectedMonth,
     setSelectedMonth,
     filters,
     allDeselected,
@@ -20,13 +20,11 @@ export default function GridView(props: any) {
     error: boolean;
     data: Event[];
     months: Array<number>;
-    selected: number;
+    selectedMonth: number;
     setSelectedMonth: Function;
     filters: Array<string>;
     allDeselected: boolean;
   } = props;
-
-  console.log(selected)
 
   return (
     <div>
@@ -40,11 +38,10 @@ export default function GridView(props: any) {
               <div className="absolute inset-0 w-0.5 h-full bg-gray-300"></div>
             </div>
             {months.map((month, key) => {
-              console.log(month, selected);
               return (
                 <button
                   key={key}
-                  className="flex items-center justify-between font-medium text-gray-500 w-20 py-3 pr-2 text-left focus:outline-none"
+                  className="flex items-center hover:text-pink-600 justify-between font-medium text-slate-700 w-20 py-3 pr-2 text-left focus:outline-none"
                   onClick={() => setSelectedMonth(month)}
                 >
                   <span className="block">
@@ -53,7 +50,7 @@ export default function GridView(props: any) {
                     })}
                   </span>
                   <span
-                    className={classNames(`${selected === month ? "bg-cyan-500" : "bg-slate-600"}`,
+                    className={classNames(`${selectedMonth === month ? "bg-cyan-500" : "bg-slate-600"}`,
                     "z-10 block w-3.5 h-3.5 border-2 border-white rounded-full")}
                   ></span>
                 </button>
@@ -67,7 +64,7 @@ export default function GridView(props: any) {
                 return (
                   <div
                     key={i}
-                    className={`flex-grow ${selected !== month && "hidden"}`}
+                    className={`flex-grow ${selectedMonth !== month && "hidden"}`}
                   >
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
                       {data
@@ -101,10 +98,10 @@ export default function GridView(props: any) {
           )}
 
           {!isLoading && allDeselected && (
-            <div className="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+            <div className="relative block w-full bg-slate-50 opacity-80 border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
               <i className="fas fa-grip-horizontal fa-4x text-slate-700"></i>
               <span className="mt-2 block text-sm font-medium text-gray-900">
-                Select a filter <i className="far fa-filter"></i> to see events
+                Select a filter <i className="fas fa-filter"></i> to see events
               </span>
             </div>
           )}

@@ -13,16 +13,16 @@ function classNames(...classes: Array<string | null>) {
 export function ListCard({ event, handleClick }: { event: Event, handleClick: Function }) {
 
   return (
-    <li key={event.id} className="flex mb-3">
+    <li key={event.id} className="flex mb-3 sm:mb-5">
       <div
         className={
           event.endDate && event.startDate !== event.endDate
-            ? `relative min-w-16 text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
-            : `relative min-w-16 text-center sm:text-left bg-white px-4 sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
+            ? `relative min-w-full text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
+            : `relative text-center sm:text-left bg-white px-4 sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
         }
       >
         <div>
-          <p className="text-xs font-base sm:text-lg text-gray-900 mt-2 sm:mt-0 text-center">
+          <p className="text-xs font-base sm:text-lg text-slate-900 mt-2 sm:mt-0 text-center">
             {getMonth(event.startDate)}
           </p>
         </div>
@@ -55,6 +55,7 @@ export function ListCard({ event, handleClick }: { event: Event, handleClick: Fu
           ></div>
         </div>
       </div>
+      
       <div
         onClick={() => handleClick}
         className="hover:bg-gray-50 relative cursor-pointer z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
@@ -96,7 +97,7 @@ export function ListCard({ event, handleClick }: { event: Event, handleClick: Fu
               className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
             justify-center text-gray-400 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
             >
-              <span className="text-slate-700">
+              <span className={event.textColor || "text-pink-600"}>
                 <i className="fas fa-info"></i>
               </span>
             </a>

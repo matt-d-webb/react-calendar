@@ -49,6 +49,7 @@ const eventFactory = () => {
       0,
       30
     )}`,
+    endDate: null,
     maxEntries: 18,
     entryCount: 1,
     complete: false,

@@ -47,65 +47,64 @@ export default function Calendar(props: any) {
   }, [data]);
 
   return (
-    <div className="max-w-6xl mx-auto mt-10">
-      <div>
-        <div className="relative inline-flex w-full mb-10">
-          <div className="absolute left-1">
-            {calendarView === "list" && (
-              <TabMonths
-                {...{
-                  selectedMonth,
-                  months,
-                  setSelectedMonth,
-                }}
-              />
-            )}
-          </div>
-          <div className="absolute right-0">
-            <div className="relative inline-flex">
-              <ToggleView
-                {...{
-                  calendarView,
-                  handleViewSwitch,
-                }}
-              />
-              <FilterMenu
-                selected={selectedMenuFilter}
-                setSelected={setSelectedMenuFilter}
-                {...{
-                  filters,
-                  setFilters,
-                  setAllDeselected,
-                }}
-              />
-            </div>
+    <div className="max-w-6xl mt-10 mx-4 sm:mx-auto">
+      <div className="relative inline-flex w-full mb-12">
+        <div className="absolute left-1">
+          {calendarView === "list" && (
+            <TabMonths
+              {...{
+                months,
+                selectedMonth,
+                setSelectedMonth,
+              }}
+            />
+          )}
+        </div>
+        <div className="absolute right-0">
+          <div className="relative inline-flex">
+            <ToggleView
+              {...{
+                calendarView,
+                handleViewSwitch,
+              }}
+            />
+            <FilterMenu
+              {...{
+                filters,
+                selectedMenuFilter,
+                setSelectedMenuFilter,
+                setFilters,
+                setAllDeselected,
+              }}
+            />
           </div>
         </div>
       </div>
-      {calendarView === "grid" ? (
+
+      {calendarView === "grid" && (
         <GridView
-          filtersSelected={selectedMenuFilter}
-          selected={selectedMonth}
           {...{
-            filters,
             isLoading,
             error,
             data,
             months,
+            filters,
+            selectedMonth,
             setSelectedMonth,
             allDeselected,
           }}
         />
-      ) : (
+      )}
+
+      {calendarView === "list" && (
         <ListView
-          filtersSelected={selectedMenuFilter}
-          selected={selectedMonth}
           {...{
-            filters,
             isLoading,
             error,
             data,
             months,
+            filters,
+            selectedMonth,
             setSelectedMonth,
             allDeselected,
           }}

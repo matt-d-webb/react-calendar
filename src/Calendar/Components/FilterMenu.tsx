@@ -6,8 +6,13 @@ function classNames(...classes: Array<string>) {
 }
 
 export default function FilterMenu(props: any) {
-  const { filters, setFilters, selected, setSelected, setAllDeselected } =
-    props;
+  const {
+    filters,
+    setFilters,
+    selectedMenuFilter,
+    setSelectedMenuFilter,
+    setAllDeselected,
+  } = props;
   const trueState = Object.keys(filters).reduce(
     (pre, cur) => ({ ...pre, [cur]: true }),
     {}
@@ -17,25 +22,21 @@ export default function FilterMenu(props: any) {
     {}
   );
   const [someSelected, setSomeSelected] = useState(false);
-  const handleClick = async (type: any) => {
-    setFilters((state: any) => {
-      const f = {
-        ...state,
-        [type]: !state[type],
-      };
-      console.log(f);
-      return f;
-    });
+  const handleFilterItemClick = async (type: any) => {
+    setFilters((state: any) => ({
+      ...state,
+      [type]: !state[type],
+    }));
   };
   const handleSelectAll = () => {
-    selected ? setFilters(trueState) : setFilters(falseState);
-    setSelected(!selected);
+    selectedMenuFilter ? setFilters(trueState) : setFilters(falseState);
+    setSelectedMenuFilter(!selectedMenuFilter);
   };
 
   useEffect(() => {
     const allSelected = Object.values(filters).every((filter) => filter);
     if (allSelected) {
-      setSelected(false /* "Deselect All =" */);
+      setSelectedMenuFilter(false /* "Deselect All =" */);
     }
     setAllDeselected(
       Object.values(filters).every((filter) => filter === false)
@@ -43,7 +44,7 @@ export default function FilterMenu(props: any) {
 
     // Note: "selected" is unchecked i.e false!
     setSomeSelected(Object.values(filters).some((filter) => !filter));
-  }, [filters, setSelected, setAllDeselected]);
+  }, [filters, setSelectedMenuFilter, setAllDeselected]);
 
   return (
     <div className="mt-0.5 z-50">
@@ -55,9 +56,7 @@ export default function FilterMenu(props: any) {
                 ? "text-cyan-500 bg-gray-50"
                 : "text-gray-500 bg-white hover:bg-gray-50",
               `ml-2 relative inline-flex items-center px-2 py-2 shadow-md 
-                      rounded-md border border-gray-300 text-sm ring-teal-500
-                       focus:z-10 focus:outline-none 
-                      focus:ring-1 focus:ring-teal-500 focus:border-teal-500`
+                      rounded-md border border-gray-300 text-sm focus:outline-none `
             )}
           >
             <span className="sr-only">Filter</span>
@@ -68,11 +67,14 @@ export default function FilterMenu(props: any) {
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           {Object.keys(filters).map((filterName, key) => {
             return (
-              <Menu.Item key={key} onClick={() => handleClick(filterName)}>
+              <Menu.Item
+                key={key}
+                onClick={() => handleFilterItemClick(filterName)}
+              >
                 {({ active }) => (
                   <div
                     className={classNames(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      active ? "bg-gray-100 text-cyan-900" : "text-gray-700",
                       "group flex items-center px-4 py-2 text-sm cursor-pointer"
                     )}
                   >
@@ -80,7 +82,7 @@ export default function FilterMenu(props: any) {
                       type="checkbox"
                       onChange={() => {}}
                       checked={filters[filterName]}
-                      className="mr-3 focus:ring-teal-500 h-4 w-4 text-slate-700 rounded cursor-pointer"
+                      className="mr-3 text-cyan-500 focus:ring-cyan-400 focus:ring-opacity-25 border border-gray-300 rounded cursor-pointer"
                     />
                     {`${filterName[0].toUpperCase()}${filterName.slice(1)}`}
                   </div>
@@ -93,11 +95,11 @@ export default function FilterMenu(props: any) {
               {({ active }) => (
                 <div
                   className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    active ? "bg-gray-100 text-fuchsia-700" : "text-gray-700",
                     "group flex items-center px-4 py-2 text-xs cursor-pointer text-center"
                   )}
                 >
-                  {selected ? "Select All" : "Deselect All"}
+                  {selectedMenuFilter ? "Select All" : "Deselect All"}
                 </div>
               )}
             </Menu.Item>

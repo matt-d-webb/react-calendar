@@ -6,14 +6,14 @@ export default function ListView(props: any) {
     isLoading,
     error,
     data,
-    selected,
+    selectedMonth,
     filters,
     allDeselected,
   }: {
     isLoading: boolean;
     error: boolean;
     data: Event[];
-    selected: any;
+    selectedMonth: any;
     filters: Array<string>;
     allDeselected: boolean;
   } = props;
@@ -23,11 +23,10 @@ export default function ListView(props: any) {
       {!error ? (
         <>
           {!isLoading && !allDeselected && (
-            <>
               <ul>
                 {data
                   .filter(
-                    (event) => new Date(event.startDate).getMonth() === selected
+                    (event) => new Date(event.startDate).getMonth() === selectedMonth
                   )
                   .filter(({ type: { eventType } }: any) => {
                     return filters[eventType];
@@ -38,27 +37,26 @@ export default function ListView(props: any) {
 
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                 {data.filter(
-                  (event) => new Date(event.startDate).getMonth() === selected
+                  (event) => new Date(event.startDate).getMonth() === selectedMonth
                 ).length === 0 && <ListComingSoonCard />}
               </ul>
-            </>
           )}
 
           {isLoading && (
             <>
               <ul>
-                {[1, 2, 3].map((dummy) => {
-                  return <ListSkeleton key={dummy} />;
+                {[...new Array(3)].map((_, i) => {
+                  return <ListSkeleton key={i} />;
                 })}
               </ul>
             </>
           )}
 
           {!isLoading && allDeselected && (
-            <div className="relative sm:ml-28 block border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+            <div className="relative block border-2 bg-slate-50 opacity-80 border-slate-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
               <i className="fas fa-th-list fa-4x text-slate-700"></i>
               <span className="mt-2 block text-sm font-medium text-gray-900">
-                Select a filter <i className="far fa-filter"></i> to see events
+                Select a filter <i className="fas fa-filter"></i> to see events
               </span>
             </div>
           )}
