@@ -108,4 +108,4 @@ const types = [
   },
 ];
 
-export const events = [...new Array(20)].map((_) => eventFactory());
+export const events = [...new Array(16)].map((_) => eventFactory());
