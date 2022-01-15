@@ -1,6 +1,6 @@
 import { events } from "./mock-data/events.js";
 import Calendar from "./Calendar/Calendar";
-import "@fortawesome/fontawesome-free/css/all.css";
+import "./static/fontawesome/css/all.min.css";
 
 export interface EventType {
   id: string;
