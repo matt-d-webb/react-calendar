@@ -2,8 +2,8 @@ import {
   getDay,
   getMonth,
   getDayStr,
-} from "../../utils/DateFormatting";
-import { Event } from "../../App";
+} from "../../../utils/DateFormatting";
+import { Event } from "../../../App";
 
 function classNames(...classes: Array<string | null>) {
   return classes.filter(Boolean).join(" ");

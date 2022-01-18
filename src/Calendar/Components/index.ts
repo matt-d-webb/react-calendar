@@ -4,10 +4,10 @@ import ToggleView from "./ToggleView";
 import TabMonths from "./TabMonths";
 
 // Grid Components
-import GridView from "./GridView";
+import GridView from "./Grid/GridView";
 
 // List Compoents
-import ListView from "./ListView";
+import ListView from "./List/ListView";
 
 
 export {

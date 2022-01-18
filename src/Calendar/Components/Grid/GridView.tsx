@@ -1,5 +1,5 @@
 import { GridCard, GridComingSoonCard, GridSkeleton } from "./GridCard";
-import { Event } from "../../App";
+import { Event } from "../../../App";
 function classNames(...classes: Array<string | null>) {
   return classes.filter(Boolean).join(" ");
 };

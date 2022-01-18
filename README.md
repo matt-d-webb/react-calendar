@@ -10,18 +10,37 @@
   <img src="assets/list-view-example.png" width="600" />
 </p>
 
+## Uses
+
 - React v17+
 - TailwindCSS v3
 
 ```js
 export default function App() {
-  return (
-    <div>
-        <Calendar data={[...]}></Calendar>
-    </div>
-  )
+  return (<Calendar data={[...]}></Calendar>)
 }
 ```
+
+| Name | Type | Required | Default | Description | 
+|----|----|----|----|----|
+| id | string | required | null | unique identifier |
+| name | string | optional | null | overrides the 'EventType' name |
+| description | string | optional | overrides the 'EventType' name |
+| rounds | string | optional | unique identifier |
+| times | string | optional | unique identifier |
+| startDate | string | required | unique identifier |
+| endDate | string | optional | unique identifier |
+| maxEntries | string | optional | unique identifier |
+| entryCount | string | optional | unique identifier |
+| complete | string | required | unique identifier |
+| cancellelled | string | required | unique identifier |
+| isLive | string | required | unique identifier |
+| active | string | required | unique identifier |
+| type | string | required | unique identifier |
+| color | string | required | unique identifier |
+| textColor | string | required | unique identifier |
+| url | string | required | unique identifier |
+| isFull | string | required | unique identifier |
 
 ```ts
 interface Event {

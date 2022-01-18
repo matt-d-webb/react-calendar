@@ -15,6 +15,17 @@ export default function Calendar(props: any) {
     data,
   }: { isLoading: boolean; error: boolean; data: Event[] } = props;
 
+
+  const [calendarState, setCalendarState] = useState({
+    viewTyep: 'grid',
+    selectedMenuFilter: false,
+    allUnselected: false,
+    filters: {},
+    months: [],
+    selectedMonth: 0
+  });
+
+
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calendarView, setCalendarView] = useState(defaultView);
   const [selectedMenuFilter, setSelectedMenuFilter] = useState(false);
