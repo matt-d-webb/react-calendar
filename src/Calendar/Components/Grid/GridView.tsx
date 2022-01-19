@@ -9,7 +9,9 @@ interface GridViewProps {
   months: Array<number>;
   selectedMonth: number;
   setSelectedMonth: Function;
-  filters: Array<string>;
+  filters: {
+    [key: string]: boolean
+  };
   allDeselected: boolean;
 }
 
