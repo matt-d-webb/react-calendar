@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
+import { classNames } from "../../utils/Classes";
 
-function classNames(...classes: Array<string>) {
-  return classes.filter(Boolean).join(" ");
+interface FilerMenuProps {
+  filters: {
+    [key: string]: boolean
+  },
+  selectedMenuFilter: boolean,
+  setFilters: Function
+  setSelectedMenuFilter: Function
+  setAllDeselected: Function
 }
 
-export default function FilterMenu(props: any) {
+export default function FilterMenu(props: FilerMenuProps) {
   const {
     filters,
-    setFilters,
     selectedMenuFilter,
+    setFilters,
     setSelectedMenuFilter,
     setAllDeselected,
   } = props;
+
   const trueState = Object.keys(filters).reduce(
     (pre, cur) => ({ ...pre, [cur]: true }),
     {}
@@ -65,7 +73,7 @@ export default function FilterMenu(props: any) {
         </div>
 
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-          {Object.keys(filters).map((filterName, key) => {
+          {Object.keys(filters).map((filterName: string, key: number) => {
             return (
               <Menu.Item
                 key={key}

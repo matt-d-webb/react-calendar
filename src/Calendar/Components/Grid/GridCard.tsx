@@ -1,14 +1,16 @@
 import {
   prettyDate,
 } from "../../../utils/DateFormatting";
-import { Event } from "../../../App";
+import { Event } from "../../Types";
+import { classNames } from "../../../utils/Classes";
 
-function classNames(...classes: Array<string | null>) {
-  return classes.filter(Boolean).join(" ");
-};
+interface GridCardProps {
+  event: Event,
+  handleClick: Function | null
+}
 
-export function GridCard({ event, handleClick }: { event: Event, handleClick: Function | null }) {
-
+export function GridCard(props: GridCardProps) {
+  const { event, handleClick } = props;
   return (
     <div
       onClick={() => handleClick}

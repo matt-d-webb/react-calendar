@@ -1,16 +1,14 @@
-import {
-  getDay,
-  getMonth,
-  getDayStr,
-} from "../../../utils/DateFormatting";
-import { Event } from "../../../App";
+import { getDay, getMonth, getDayStr } from "../../../utils/DateFormatting";
+import { Event } from "../../Types";
+import { classNames } from "../../../utils/Classes";
 
-function classNames(...classes: Array<string | null>) {
-  return classes.filter(Boolean).join(" ");
-};
+interface ListCardProps {
+  event: Event;
+  handleClick: Function;
+}
 
-
-export function ListCard({ event, handleClick }: { event: Event, handleClick: Function }) {
+export function ListCard(props: ListCardProps) {
+  const { event, handleClick } = props;
 
   return (
     <li key={event.id} className="flex mb-3 sm:mb-5">
@@ -55,7 +53,7 @@ export function ListCard({ event, handleClick }: { event: Event, handleClick: Fu
           ></div>
         </div>
       </div>
-      
+
       <div
         onClick={() => handleClick}
         className="hover:bg-gray-50 relative cursor-pointer z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"

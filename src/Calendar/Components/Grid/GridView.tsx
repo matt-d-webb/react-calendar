@@ -1,11 +1,20 @@
 import { GridCard, GridComingSoonCard, GridSkeleton } from "./GridCard";
-import { Event } from "../../../App";
-function classNames(...classes: Array<string | null>) {
-  return classes.filter(Boolean).join(" ");
-};
+import { Event } from "../../Types";
+import { classNames } from "../../../utils/Classes";
+
+interface GridViewProps {
+  isLoading: boolean;
+  error: boolean;
+  data: Event[];
+  months: Array<number>;
+  selectedMonth: number;
+  setSelectedMonth: Function;
+  filters: Array<string>;
+  allDeselected: boolean;
+}
 
 
-export default function GridView(props: any) {
+export default function GridView(props: GridViewProps) {
   const {
     isLoading,
     error,
@@ -15,15 +24,6 @@ export default function GridView(props: any) {
     setSelectedMonth,
     filters,
     allDeselected,
-  }: {
-    isLoading: boolean;
-    error: boolean;
-    data: Event[];
-    months: Array<number>;
-    selectedMonth: number;
-    setSelectedMonth: Function;
-    filters: Array<string>;
-    allDeselected: boolean;
   } = props;
 
   return (

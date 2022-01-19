@@ -1,5 +1,5 @@
 import { ListCard, ListComingSoonCard, ListSkeleton } from "./ListCard";
-import { Event } from "../../../App";
+import { Event } from "../../Types";
 
 export default function ListView(props: any) {
   const {
