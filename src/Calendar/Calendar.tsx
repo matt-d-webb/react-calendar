@@ -6,7 +6,7 @@ import {
   GridView,
   ListView,
 } from "./Components";
-import { Event } from "../App";
+import { Event } from "./Types";
 
 export default function Calendar(props: any) {
   const {

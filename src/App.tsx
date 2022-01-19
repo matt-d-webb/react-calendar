@@ -1,7 +1,9 @@
 import { ReactElement } from "react"
+import Calendar from "./Calendar/Calendar";
 import { Event } from "./Calendar/Types";
 import { events } from "./mocks/events.js";
-import Calendar from "./Calendar/Calendar";
+
+// TODO: Look for better peer dependency strategy here to avoid pulling in this mammoth lib:
 import "./static/fontawesome/css/all.min.css";
 
 const MOCK_DATA: Event[] = events;

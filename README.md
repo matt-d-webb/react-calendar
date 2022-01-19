@@ -15,69 +15,57 @@
 - React v17+
 - TailwindCSS v3
 
-```js
-export default function App() {
-  return (<Calendar data={[...]}></Calendar>)
-}
-```
-
-| Name | Type | Required | Default | Description | 
-|----|----|----|----|----|
-| id | string | required | null | unique identifier |
-| name | string | optional | null | overrides the 'EventType' name |
-| description | string | optional | overrides the 'EventType' name |
-| rounds | string | optional | unique identifier |
-| times | string | optional | unique identifier |
-| startDate | string | required | unique identifier |
-| endDate | string | optional | unique identifier |
-| maxEntries | string | optional | unique identifier |
-| entryCount | string | optional | unique identifier |
-| complete | string | required | unique identifier |
-| cancellelled | string | required | unique identifier |
-| isLive | string | required | unique identifier |
-| active | string | required | unique identifier |
-| type | string | required | unique identifier |
-| color | string | required | unique identifier |
-| textColor | string | required | unique identifier |
-| url | string | required | unique identifier |
-| isFull | string | required | unique identifier |
-
 ```ts
-interface Event {
-  id: string,
-  name: string | null,
-  description: string | null,
-  rounds: number | null,
-  time: string | null,
-  startDate: string,
-  maxEntries: number,
-  entryCount: number | null,
-  complete: boolean,
-  cancelled: boolean,
-  isLive: boolean,
-  active: string,
-  type: EventType, // <-- inherts `EventType` props
-  color: string | null,
-  textColor: string | null,
-  url: string,
-  isFull: boolean
-}
-// Defaults - helpful for repeating types which still need unqiue values i.e date, capacity
-interface EventType {
-  id: string,
-  name: string,
-  description: string,
-  url: string,
-  color: string,
-  textColor: string,
-  time: string | null,
-  maxEntries: number,
-  timeControl: string,
-  eventType: string,
-  defaultPrice: string,
-  canRegister: boolean
+import { Event } from "./Types";
+
+export default function App(): ReactComponent {
+
+  const events: Event[] = useEventList(); 
+
+  return (<Calendar data={events}></Calendar>)
 }
 ```
+
+## Event Props
+
+| Name         | Type         | Required | Default | Description                                                 | 
+|----          |----          |----      |----     |----                                                         |
+| id           | `string`     | required | null    | unique identifier                                           |
+| name         | `string`     | optional | null    | overrides 'EventType' name                                  |
+| description  | `string`     | optional | ""      | overrides 'EventType' description                           |
+| rounds       | `number`     | optional | 0       | events can have "rounds" like in a competition              |
+| time         | `string`     | optional | null    | when the event starts, allows for "arrival time" type input |
+| startDate    | `Date`       | required | today() | when the event takes place                                  |
+| endDate      | `Date`       | optional | null    | when the event finishes                                     |
+| maxEntries   | `number`     | optional | null    | overrides `EventType` maxEntries                            |
+| entryCount   | `number`     | optional | null    | current entries associated to event instance                | 
+| complete     | `boolean`    | optional | false   | when had finsihed                                           |
+| cancellelled | `boolean`    | optional | false   | event no longer taking place                                |
+| isLive       | `boolean`    | optional | false   | event is in progress (streaming)                            |
+| active       | `boolean`    | optional | true    | event is available to query                                 |
+| type         | `eventType`  | optional | general | blueprint event type                                        |
+| color        | `string`     | optional | teal    | overrides `EventType` color                                 |
+| textColor    | `string`     | optional | teal    | overrides `EventType` textColor                             |
+| url          | `string`     | optional | null    | redirect url for a landing page or sign up                  |
+| isFull       | `boolean`    | optional | false   | no more entries to this event allowed                       |
+
+### Event Type Props
+
+| Name         | Type         | Required | Default       |  Description                   | 
+|----          |----          |----      |----           |----                            |
+| id           | `string`     | required | null          | unique identifier              |
+| name         | `string`     | required | "Title"       |                                |
+| description  | `string`     | required | "Description" |                                |
+| time         | `string`     | optional | null          |                                |
+| maxEntries   | `number`     | optional | null          |                                |
+| color        | `string`     | optional | teal          |                                |
+| textColor    | `string`     | optional | teal          |                                |
+| url          | `string`     | optional | null          |                                |
+| defaultPrice | `string`     | optional | null          |                                |
+| canRegister  | `string`     | optional | false         |                                |
+| eventType    | `string`     | required | "general"     |                                |
+
+
 
 
 
