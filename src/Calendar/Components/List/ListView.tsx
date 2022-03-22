@@ -1,58 +1,62 @@
 import { ListCard, ListComingSoonCard, ListSkeleton } from "./ListCard";
-import { Event } from "../../Types";
+import { CalendarEvent } from "../../Types";
 
 export default function ListView(props: any) {
   const {
     isLoading,
-    error,
+    isError,
     data,
     selectedMonth,
     filters,
-    allDeselected,
+    noneSelected,
   }: {
     isLoading: boolean;
-    error: boolean;
-    data: Event[];
+    isError: boolean;
+    data: CalendarEvent[];
     selectedMonth: any;
     filters: Array<string>;
-    allDeselected: boolean;
+    noneSelected: boolean;
   } = props;
 
   return (
     <>
-      {!error ? (
+      {!isError && (
         <>
-          {!isLoading && !allDeselected && (
-              <ul>
-                {data
-                  .filter(
-                    (event) => new Date(event.startDate).getMonth() === selectedMonth
-                  )
-                  .filter(({ type: { eventType } }: any) => {
-                    return filters[eventType];
-                  })
-                  .map((data, key) => (
-                    <ListCard key={key} event={data} handleClick={() => {}} />
-                  ))}
+          {!isLoading && !noneSelected && (
+            <ul>
+              {data
+                .filter(
+                  (event) =>
+                    new Date(event.startDate).getMonth() === selectedMonth
+                )
+                .filter(({ type: { eventType } }: any) => {
+                  return filters[eventType];
+                })
+                .map((event) => (
+                  <ListCard
+                    key={event.id}
+                    event={event}
+                    handleClick={() => {}}
+                  />
+                ))}
 
-                {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
-                {data.filter(
-                  (event) => new Date(event.startDate).getMonth() === selectedMonth
-                ).length === 0 && <ListComingSoonCard />}
-              </ul>
+              {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
+              {data.filter(
+                (event) =>
+                  new Date(event.startDate).getMonth() === selectedMonth
+              ).length === 0 && <ListComingSoonCard />}
+            </ul>
           )}
 
           {isLoading && (
-            <>
-              <ul>
-                {[...new Array(3)].map((_, i) => {
-                  return <ListSkeleton key={i} />;
-                })}
-              </ul>
-            </>
+            <ul>
+              {[...new Array(3)].map((_, i) => (
+                <ListSkeleton key={i} />
+              ))}
+            </ul>
           )}
 
-          {!isLoading && allDeselected && (
+          {!isLoading && noneSelected && (
             <div className="relative block border-2 bg-slate-50 opacity-80 border-slate-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
               <i className="fas fa-th-list fa-4x text-slate-700"></i>
               <span className="mt-2 block text-sm font-medium text-gray-900">
@@ -61,9 +65,14 @@ export default function ListView(props: any) {
             </div>
           )}
         </>
-      ) : (
-        <div className="m-auto text-center">
-          <div className="italic text-red-800">Error fetching events.</div>
+      )}
+
+      {isError && (
+        <div className="relative block border-2 bg-slate-50 opacity-80 border-pink-500 border-dashed rounded-lg p-12 text-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+          <i className="fas fa-exclamation-circle fa-4x text-pink-700"></i>
+          <span className="mt-2 block text-sm font-medium text-pink-900">
+            Error loading calendar events
+          </span>
         </div>
       )}
     </>

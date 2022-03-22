@@ -9,7 +9,7 @@ interface FilerMenuProps {
   selectedMenuFilter: boolean,
   setFilters: Function
   setSelectedMenuFilter: Function
-  setAllDeselected: Function
+  setNoneSelected: Function
 }
 
 export default function FilterMenu(props: FilerMenuProps) {
@@ -18,7 +18,7 @@ export default function FilterMenu(props: FilerMenuProps) {
     selectedMenuFilter,
     setFilters,
     setSelectedMenuFilter,
-    setAllDeselected,
+    setNoneSelected,
   } = props;
 
   const trueState = Object.keys(filters).reduce(
@@ -46,16 +46,16 @@ export default function FilterMenu(props: FilerMenuProps) {
     if (allSelected) {
       setSelectedMenuFilter(false /* "Deselect All =" */);
     }
-    setAllDeselected(
+    setNoneSelected(
       Object.values(filters).every((filter) => filter === false)
     );
 
     // Note: "selected" is unchecked i.e false!
     setSomeSelected(Object.values(filters).some((filter) => !filter));
-  }, [filters, setSelectedMenuFilter, setAllDeselected]);
+  }, [filters, setSelectedMenuFilter, setNoneSelected]);
 
   return (
-    <div className="mt-0.5 z-50">
+    <div className="mt-0.5">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button
@@ -72,7 +72,7 @@ export default function FilterMenu(props: FilerMenuProps) {
           </Menu.Button>
         </div>
 
-        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="z-10 origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           {Object.keys(filters).map((filterName: string, key: number) => {
             return (
               <Menu.Item

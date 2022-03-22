@@ -2,9 +2,9 @@ import moment from 'moment';
 
 export function prettyDate(start: string, end: string | null): String {
   if(!end || start === end) {
-    return formatDate(start);
+    return moment(start).format("ddd Do MMM");
   } else {
-    return formatDoubleDateMoment(start, end);
+    return `${moment(start).format("ddd Do")}, ${moment(end).format("ddd Do MMM")}`
   }
 };
 
@@ -12,11 +12,7 @@ export function prettyLongDate(start: string,  end: string | null): string {
   if(!end || start === end) {
     return moment(start).format("dddd Do MMMM")
   } else {
-    // we want to remove the "month" to shorten the string
-    // FROM:  Saturday, 22 August - Sunday, 23 August
-    // TO:    Saturday 22 - Sunday 23 August 
-    const dateStr = `${moment(start).format("dddd Do MMMM")}, ${moment(end).format("dddd Do MMMM")}`;
-    return dateStr;
+    return `${moment(start).format("dddd Do MMMM")}, ${moment(end).format("dddd Do MMMM")}`;
   }
 };
 
@@ -33,16 +29,5 @@ export function getYear(date: string) : String {
 };
 
 export function getDayStr(date: string) : String {
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const dayIndex = new Date(date).getDay();
-  return days[dayIndex];
+  return moment(date).format("ddd");
 };
-
-function formatDate(date: string) : String {
-  return moment(date).format("ddd Do MMM");
-}
-
-function formatDoubleDateMoment(start: string,  end: string | null): String {
-  return `${moment(start).format("ddd Do")}, ${moment(end).format("ddd Do MMM")}`
-}
-

@@ -6,30 +6,21 @@ import {
   GridView,
   ListView,
 } from "./Components";
-import { Event } from "./Types";
+import { CalendarData } from "./Types";
 
-export default function Calendar(props: any) {
+
+
+export default function Calendar(props: CalendarData) {
   const {
     isLoading,
-    error,
+    isError,
     data,
-  }: { isLoading: boolean; error: boolean; data: Event[] } = props;
-
-
-  const [calendarState, setCalendarState] = useState({
-    viewTyep: 'grid',
-    selectedMenuFilter: false,
-    allUnselected: false,
-    filters: {},
-    months: [],
-    selectedMonth: 0
-  });
-
+  } = props;
 
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calendarView, setCalendarView] = useState(defaultView);
   const [selectedMenuFilter, setSelectedMenuFilter] = useState(false);
-  const [allDeselected, setAllDeselected] = useState(false);
+  const [noneSelected, setNoneSelected] = useState(false);
   const [filters, setFilters] = useState({});
   const today = new Date();
   const currentMonth = today.getMonth();
@@ -44,15 +35,12 @@ export default function Calendar(props: any) {
 
   useMemo(() => {
     if (data) {
-      const availableTypes = data.reduce(
-        (pre: object, { type: { eventType } }: any) => {
-          return {
-            ...pre,
-            [eventType]: true,
-          };
-        },
-        {}
-      );
+      const availableTypes = data.reduce((types, { type: { eventType } }) => {
+        return {
+          ...types,
+          [eventType]: true,
+        };
+      }, {});
       setFilters(availableTypes);
     }
   }, [data]);
@@ -85,7 +73,7 @@ export default function Calendar(props: any) {
                 selectedMenuFilter,
                 setSelectedMenuFilter,
                 setFilters,
-                setAllDeselected,
+                setNoneSelected,
               }}
             />
           </div>
@@ -96,13 +84,13 @@ export default function Calendar(props: any) {
         <GridView
           {...{
             isLoading,
-            error,
+            isError,
             data,
             months,
             filters,
             selectedMonth,
             setSelectedMonth,
-            allDeselected,
+            noneSelected,
           }}
         />
       )}
@@ -111,13 +99,13 @@ export default function Calendar(props: any) {
         <ListView
           {...{
             isLoading,
-            error,
+            isError,
             data,
             months,
             filters,
             selectedMonth,
             setSelectedMonth,
-            allDeselected,
+            noneSelected,
           }}
         />
       )}

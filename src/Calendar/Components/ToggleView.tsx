@@ -3,7 +3,7 @@ export default function ToggleView({
   handleViewSwitch,
 }: {
   calendarView: string;
-  handleViewSwitch: (view: string) => void
+  handleViewSwitch: (view: string) => void;
 }) {
   return (
     <div className="shadow-md rounded-md mt-0.5">

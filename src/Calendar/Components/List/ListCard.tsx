@@ -55,8 +55,7 @@ export function ListCard(props: ListCardProps) {
       </div>
 
       <div
-        onClick={() => handleClick}
-        className="hover:bg-gray-50 relative cursor-pointer z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
+        className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
       >
         <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm truncate">
           <p className="text-slate-900 font-extrabold text-2xl tracking-tight mb-1">
@@ -91,9 +90,9 @@ export function ListCard(props: ListCardProps) {
         {event.url ? (
           <div className="flex-shrink-0 pr-2">
             <a
-              href={`${event.url}/${event.id}`}
+              onClick={() => handleClick(`${event.url}/${event.id}`)}
               className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
-            justify-center text-gray-400 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
+            justify-center text-gray-400 hover:bg-gray-200 cursor-pointer rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
             >
               <span className={event.textColor || "text-pink-600"}>
                 <i className="fas fa-info"></i>
@@ -108,7 +107,7 @@ export function ListCard(props: ListCardProps) {
 
 export function ListComingSoonCard() {
   return (
-    <li className=" col-span-1 flex mb-3">
+    <li className="col-span-1 flex mb-3">
       <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
         <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
           <h3 className="font-red-hat-display text-xl mb-1">Coming Soon</h3>
