@@ -1,9 +1,9 @@
 import { getDay, getMonth, getDayStr } from "../../../utils/DateFormatting";
-import { Event } from "../../Types";
+import { CalendarEvent } from "../../Types";
 import { classNames } from "../../../utils/Classes";
 
 interface ListCardProps {
-  event: Event;
+  event: CalendarEvent;
   handleClick: Function;
 }
 
