@@ -8,8 +8,6 @@ import {
 } from "./Components";
 import { CalendarData } from "./Types";
 
-
-
 export default function Calendar(props: CalendarData) {
   const {
     isLoading,
@@ -46,7 +44,7 @@ export default function Calendar(props: CalendarData) {
   }, [data]);
 
   return (
-    <div className="max-w-6xl mt-10 mx-4 sm:mx-auto">
+    <div className="max-w-4xl mt-10 mx-6 sm:mx-auto">
       <div className="relative inline-flex w-full mb-12">
         <div className="absolute left-1">
           {calendarView === "list" && (
