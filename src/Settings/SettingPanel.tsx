@@ -2,8 +2,16 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { SettingSwitch } from "./";
 
-export default function SettingPanel(props: any) {
-  const { open, setOpen, isLoading, setIsLoading, isError, setIsError } = props;
+interface SettingPanelProps {
+  open: boolean,
+  setOpen: Function,
+  isLoading: boolean,
+  setIsLoading: VoidFunction,
+  isError: boolean,
+  setIsError: VoidFunction
+}
+
+export default function SettingPanel({ open, setOpen, isLoading, setIsLoading, isError, setIsError }: SettingPanelProps) {
 
   return (
     <Transition.Root show={open} as={Fragment}>

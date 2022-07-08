@@ -66,10 +66,10 @@ export function ListCard(props: ListCardProps) {
           </p>
           <div className="text-gray-600 flex-grow">
             <div>
-              {event.time && (
+              {event.timeControl && (
                 <p className="inline text-sm text-slate-700 mr-2">
                   <i className="fas fa-clock mr-1"></i>
-                  <span className="inline">{event.time}</span>{" "}
+                  <span className="inline">{event.timeControl}</span>{" "}
                 </p>
               )}
               {event.rounds && (

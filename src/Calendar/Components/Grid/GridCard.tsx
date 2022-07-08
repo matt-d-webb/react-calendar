@@ -30,10 +30,10 @@ export function GridCard(props: GridCardProps) {
               {prettyDate(event.startDate, event.endDate)}
             </span>{" "}
           </p>
-          {event.time && event.time !== "various" && (
+          {event.timeControl && event.timeControl !== "various" && (
             <p className="sm:inline text-sm text-slate-700">
               <i className="fas fa-clock mr-1"></i>
-              <span className="inline">{event.time}</span>{" "}
+              <span className="inline">{event.timeControl}</span>{" "}
             </p>
           )}
           {event.rounds && (

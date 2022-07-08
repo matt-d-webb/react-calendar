@@ -12,14 +12,13 @@ interface FilerMenuProps {
   setNoneSelected: Function
 }
 
-export default function FilterMenu(props: FilerMenuProps) {
-  const {
-    filters,
-    selectedMenuFilter,
-    setFilters,
-    setSelectedMenuFilter,
-    setNoneSelected,
-  } = props;
+export default function FilterMenu({
+  filters,
+  selectedMenuFilter,
+  setFilters,
+  setSelectedMenuFilter,
+  setNoneSelected,
+}: FilerMenuProps) {
 
   const trueState = Object.keys(filters).reduce(
     (pre, cur) => ({ ...pre, [cur]: true }),

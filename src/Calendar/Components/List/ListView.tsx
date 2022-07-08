@@ -1,7 +1,7 @@
 import { ListCard, ListComingSoonCard, ListSkeleton } from "./ListCard";
 import { CalendarEvent } from "../../Types";
 
-export default function ListView(props: any) {
+export function ListView(props: any) {
   const {
     isLoading,
     isError,

@@ -10,7 +10,7 @@ export function prettyDate(start: string, end: string | null): String {
 
 export function prettyLongDate(start: string,  end: string | null): string {
   if(!end || start === end) {
-    return moment(start).format("dddd Do MMMM")
+    return moment(start).format("dddd Do MMMM");
   } else {
     return `${moment(start).format("dddd Do MMMM")}, ${moment(end).format("dddd Do MMMM")}`;
   }

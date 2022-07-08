@@ -1,10 +1,12 @@
+interface ToggleViewProps {
+  calendarView: string;
+  handleViewSwitch: (view: string) => void;
+}
+
 export default function ToggleView({
   calendarView,
   handleViewSwitch,
-}: {
-  calendarView: string;
-  handleViewSwitch: (view: string) => void;
-}) {
+}: ToggleViewProps) {
   return (
     <div className="shadow-md rounded-md mt-0.5">
       <button

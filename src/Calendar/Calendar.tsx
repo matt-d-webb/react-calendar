@@ -8,12 +8,11 @@ import {
 } from "./Components";
 import { CalendarData } from "./Types";
 
-export default function Calendar(props: CalendarData) {
-  const {
-    isLoading,
-    isError,
-    data,
-  } = props;
+export default function Calendar({
+  isLoading,
+  isError,
+  data,
+}: CalendarData) {
 
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calendarView, setCalendarView] = useState(defaultView);

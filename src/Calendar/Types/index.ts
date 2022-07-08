@@ -1,5 +1,10 @@
+export enum CalendarType {
+  "grid",
+  "list"
+}
+
 export interface Config {
-  view: string | null;
+  view: CalendarType;
   months: number | null;
 }
 
@@ -18,12 +23,40 @@ export interface EventType {
   canRegister: boolean;
 }
 
+// Additionally:
+//eventTypeId:	string;
+//isLiveUrl:	string;
+//timeControl:	string;
+
+
+export interface APICalendarEvent { 
+  id:	string;
+  name:	string;
+  description:	string;
+  rounds:	number;
+  // time: string  | null;
+  startDate:	string;
+  endDate:	string;
+  maxEntries:	number;
+  entryCount:	number;
+  complete:	boolean;
+  cancelled:	boolean;
+  isLive:	boolean;
+  // active: string;
+  // type: EventType;
+  // color: string | null;
+  // textColor: string | null;
+  url:	string;
+  // isFull: boolean
+}
+  
+
 export interface CalendarEvent {
   id: string;
   name: string;
   description: string | null;
   rounds: number | null;
-  time: string | null;
+  timeControl: string | null;
   startDate: string;
   endDate: string | null;
   maxEntries: number;
@@ -44,3 +77,6 @@ export interface CalendarData {
   isError: boolean;
   data: CalendarEvent[];
 }
+
+
+

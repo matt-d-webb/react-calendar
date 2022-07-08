@@ -11,8 +11,8 @@ const eventFactory = () => {
     ...type,
     id: uuid(),
     rounds: 5,
-    time: "various",
-    startDate: `2022-0${generateRandomInteger(1, 4)}-${generateRandomInteger(
+    timeControl: "various",
+    startDate: `2022-${generateRandomInteger(new Date().getMonth() + 1, new Date().getMonth() + 4)}-${generateRandomInteger(
       0,
       30
     )}`,
@@ -36,7 +36,6 @@ const types = [
     url: "/events/rapidplay",
     color: "bg-gradient-to-r from-purple-500 to-pink-500",
     textColor: "text-pink-700 font-medium",
-    time: null,
     maxEntries: 18,
     timeControl: "25 mins",
     eventType: "rapidplay",
@@ -50,7 +49,6 @@ const types = [
     url: "/events/blitz",
     color: "bg-gradient-to-r from-cyan-500 to-blue-500",
     textColor: "text-blue-500 font-medium",
-    time: null,
     maxEntries: 18,
     timeControl: "3 min + 2 sec increment",
     eventType: "blitz",
@@ -64,7 +62,6 @@ const types = [
     url: "/events/congress",
     color: "bg-gradient-to-r from-green-500 to-cyan-500",
     textColor: "text-cyan-500 font-medium",
-    time: null,
     maxEntries: 18,
     timeControl: "60 mins",
     eventType: "congress",
@@ -73,4 +70,4 @@ const types = [
   },
 ];
 
-export const events: CalendarEvent[] = [...new Array(16)].map((_) => eventFactory());
+export const events: CalendarEvent[] = [...new Array(60)].map((_) => eventFactory());

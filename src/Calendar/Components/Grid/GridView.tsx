@@ -16,7 +16,7 @@ interface GridViewProps {
   noneSelected: boolean;
 }
 
-export default function GridView(props: GridViewProps) {
+export function GridView(props: GridViewProps) {
   const {
     isLoading,
     isError,

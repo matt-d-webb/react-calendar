@@ -1,11 +1,12 @@
 import { Switch } from '@headlessui/react'
+import { classNames } from '../utils/Classes';
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+interface SettingsSwitchProps {
+  stateValue: boolean,
+  setValue: VoidFunction
 }
 
-export default function SettingSwitch(props: any) {
-  const { stateValue, setValue } = props;
+export default function SettingSwitch({ stateValue, setValue }: SettingsSwitchProps) {
 
   return (
     <Switch

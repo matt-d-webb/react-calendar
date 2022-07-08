@@ -1,4 +1,8 @@
-export default function SettingButton({ setOpen }: { setOpen: Function }) {
+interface SettingsButtonProps {
+  setOpen: Function
+}
+
+export default function SettingButton({ setOpen }: SettingsButtonProps) {
   return (
     <div>
       <button

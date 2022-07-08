@@ -1,15 +1,17 @@
 import { classNames } from "../../utils/Classes";
 import moment from "moment";
 
+interface TabMonthsProps {
+  selectedMonth: number;
+  months: Array<number>;
+  setSelectedMonth: Function;
+}
+
 export default function TabMonths({
   selectedMonth,
   months,
   setSelectedMonth,
-}: {
-  selectedMonth: number;
-  months: Array<number>;
-  setSelectedMonth: Function;
-}) {
+}: TabMonthsProps) {
   return (
     <div className="inline-flex shadow-md rounded-md m-auto -ml-1">
       <div className="relative z-0 inline-flex rounded-md">

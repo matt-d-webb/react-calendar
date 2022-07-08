@@ -3,12 +3,8 @@ import FilterMenu from "./FilterMenu";
 import ToggleView from "./ToggleView";
 import TabMonths from "./TabMonths";
 
-// Grid Components
-import GridView from "./Grid/GridView";
-
-// List Compoents
-import ListView from "./List/ListView";
-
+import { GridView } from "./Grid";
+import { ListView } from "./List";
 
 export {
   FilterMenu,
