@@ -15,7 +15,6 @@ export interface EventType {
   url: string;
   color: string;
   textColor: string;
-  time: string | null;
   maxEntries: number;
   timeControl: string;
   eventType: string;

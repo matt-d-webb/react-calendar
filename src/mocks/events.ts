@@ -23,7 +23,7 @@ const eventFactory = () => {
     cancelled: false,
     isLive: false,
     active: "yes",
-    type,
+    type: type,
     isFull: false,
   };
 };
