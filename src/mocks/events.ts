@@ -12,7 +12,7 @@ const eventFactory = () => {
     id: uuid(),
     rounds: 5,
     timeControl: "various",
-    startDate: `2022-${generateRandomInteger(new Date().getMonth() + 1, new Date().getMonth() + 4)}-${generateRandomInteger(
+    startDate: `${new Date().getFullYear()}-${generateRandomInteger(new Date().getMonth() + 1, new Date().getMonth() + 4)}-${generateRandomInteger(
       0,
       30
     )}`,
@@ -27,6 +27,20 @@ const eventFactory = () => {
     isFull: false,
   };
 };
+
+// {
+//   eventType: "junior-club",
+//   time: "6:00pm onwards",
+//   description: "Tailored chess coaching sessions",
+//   id: "fc884491-e010-40bd-9323-022dd19fbd0e",
+//   name: "Junior Club",
+//   eventTypeId: "2545c7e7-4cc8-474c-8a9d-c9bb6bfcb1b3",
+//   cancelled: false,
+//   complete: false,
+//   endDate: null,
+//   startDate: "2022-07-26",
+//   isLive: false
+//   },
 
 const types = [
   {

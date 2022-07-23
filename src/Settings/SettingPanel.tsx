@@ -82,11 +82,11 @@ export default function SettingPanel({ open, setOpen, isLoading, setIsLoading, i
                       <dl className="mt-2 divide-y divide-gray-200 border-t border-b border-gray-200">
                         <div className="flex justify-between py-3 text-sm font-medium">
                           <dt className="text-gray-500">Loading</dt>
-                          <dd className="text-gray-900"><SettingSwitch stateValue={isLoading} setValue={() => setIsLoading} /></dd>
+                          <dd className="text-gray-900"><SettingSwitch stateValue={isLoading} setValue={setIsLoading} /></dd>
                         </div>
                         <div className="flex justify-between py-3 text-sm font-medium">
                           <dt className="text-gray-500">Error</dt>
-                          <dd className="text-gray-900"><SettingSwitch stateValue={isError} setValue={() => setIsError} /></dd>
+                          <dd className="text-gray-900"><SettingSwitch stateValue={isError} setValue={setIsError} /></dd>
                         </div>
                       </dl>
                     </div>

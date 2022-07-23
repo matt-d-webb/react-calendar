@@ -71,30 +71,19 @@ export function GridView(props: GridViewProps) {
 
             {!isLoading && !noneSelected && (
               <>
-                {months.map((month, i) => {
+                {months.map((month, key) => {
                   return (
                     <div
-                      key={i}
+                      key={key}
                       className={`flex-grow ${
                         selectedMonth !== month && "hidden"
                       }`}
                     >
                       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
-                        {data
-                          .filter(
-                            (data) =>
-                              new Date(data.startDate).getMonth() === month
-                          )
-                          .filter(({ type: { eventType } }: any) => {
-                            return filters[eventType];
-                          })
-                          .map((data, key) => (
-                            <GridCard
-                              key={key}
-                              event={data}
-                              handleClick={handleClick}
-                            />
-                          ))}
+                        {data && data
+                          .filter(({ startDate }) => new Date(startDate).getMonth() === month)
+                          .filter(({ eventType }) => filters[eventType])
+                          .map((event, key) => <GridCard {...{ key, event, handleClick }} />)}
 
                         {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                         {data.filter(
@@ -109,9 +98,7 @@ export function GridView(props: GridViewProps) {
             )}
             {isLoading && (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4 w-full">
-                {[1, 2, 3].map((val) => (
-                  <GridSkeleton key={val} />
-                ))}
+                {[1, 2, 3].map((key) => <GridSkeleton {...{ key }} />)}
               </div>
             )}
 
@@ -119,8 +106,7 @@ export function GridView(props: GridViewProps) {
               <div className="relative block w-full bg-slate-50 opacity-80 border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
                 <i className="fas fa-grip-horizontal fa-4x text-slate-700"></i>
                 <span className="mt-2 block text-sm font-medium text-gray-900">
-                  Select a filter <i className="fas fa-filter"></i> to see
-                  events
+                  Select a filter <i className="fas fa-filter"></i> to see events
                 </span>
               </div>
             )}

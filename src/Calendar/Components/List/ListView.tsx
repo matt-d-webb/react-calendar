@@ -1,7 +1,18 @@
 import { ListCard, ListComingSoonCard, ListSkeleton } from "./ListCard";
 import { CalendarEvent } from "../../Types";
 
-export function ListView(props: any) {
+interface ListViewProps {
+  isLoading: boolean;
+  isError: boolean;
+  data: CalendarEvent[];
+  selectedMonth: any;
+  filters: {
+    [key: string]: boolean;
+  };
+  noneSelected: boolean;
+}
+
+export function ListView(props: ListViewProps) {
   const {
     isLoading,
     isError,
@@ -9,13 +20,6 @@ export function ListView(props: any) {
     selectedMonth,
     filters,
     noneSelected,
-  }: {
-    isLoading: boolean;
-    isError: boolean;
-    data: CalendarEvent[];
-    selectedMonth: any;
-    filters: Array<string>;
-    noneSelected: boolean;
   } = props;
 
   return (
@@ -29,9 +33,7 @@ export function ListView(props: any) {
                   (event) =>
                     new Date(event.startDate).getMonth() === selectedMonth
                 )
-                .filter(({ type: { eventType } }: any) => {
-                  return filters[eventType];
-                })
+                .filter(({ eventType }) => filters[eventType])
                 .map((event) => (
                   <ListCard
                     key={event.id}

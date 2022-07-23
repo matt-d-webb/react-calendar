@@ -32,7 +32,7 @@ export default function Calendar({
 
   useMemo(() => {
     if (data) {
-      const availableTypes = data.reduce((types, { type: { eventType } }) => {
+      const availableTypes = data.reduce((types, { eventType  }) => {
         return {
           ...types,
           [eventType]: true,
@@ -43,7 +43,7 @@ export default function Calendar({
   }, [data]);
 
   return (
-    <div className="max-w-4xl mt-10 mx-6 sm:mx-auto">
+    <div className="max-w-6xl mt-10 mx-6 sm:mx-auto">
       <div className="relative inline-flex w-full mb-12">
         <div className="absolute left-1">
           {calendarView === "list" && (

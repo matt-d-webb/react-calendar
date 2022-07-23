@@ -13,11 +13,12 @@ export function ListCard(props: ListCardProps) {
   return (
     <li key={event.id} className="flex mb-3 sm:mb-5">
       <div
-        className={
+        className={classNames(
           event.endDate && event.startDate !== event.endDate
-            ? `relative min-w-full text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
-            : `relative text-center sm:text-left bg-white px-4 sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
-        }
+            ? "sm:px-3"
+            : "sm:px-6",
+          "relative text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg"
+        )}
       >
         <div>
           <p className="text-xs font-base sm:text-lg text-slate-900 mt-2 sm:mt-0 text-center">
@@ -54,9 +55,7 @@ export function ListCard(props: ListCardProps) {
         </div>
       </div>
 
-      <div
-        className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
-      >
+      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
         <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm truncate">
           <p className="text-slate-900 font-extrabold text-2xl tracking-tight mb-1">
             {event.name}
