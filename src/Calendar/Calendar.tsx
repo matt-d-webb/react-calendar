@@ -6,13 +6,16 @@ import {
   GridView,
   ListView,
 } from "./Components";
-import { CalendarData } from "./Types";
+import { CalendarEvent } from "./Types";
 
-export default function Calendar({
-  isLoading,
-  isError,
-  data,
-}: CalendarData) {
+interface CalendarProps {
+  isLoading: boolean;
+  isError: boolean;
+  data: CalendarEvent[];
+}
+
+export default function Calendar(props: CalendarProps) {
+  const { isLoading, isError, data } = props;
 
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calendarView, setCalendarView] = useState(defaultView);
@@ -32,7 +35,7 @@ export default function Calendar({
 
   useMemo(() => {
     if (data) {
-      const availableTypes = data.reduce((types, { eventType  }) => {
+      const availableTypes = data.reduce((types, { eventType }) => {
         return {
           ...types,
           [eventType]: true,

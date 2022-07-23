@@ -16,13 +16,14 @@
 - TailwindCSS v3
 
 ```ts
-import { Event } from "./Types";
 
-export default function App(): ReactComponent {
+export default function App() {
 
-  const events: Event[] = useEventList(); 
+  const { events, loading, error } = useEvents(); // example: implement your own hook! 
 
-  return (<Calendar data={events}></Calendar>)
+  return (
+      <Calendar data={events} isLoading={loading} isError={error} />
+  )
 }
 ```
 
@@ -31,40 +32,21 @@ export default function App(): ReactComponent {
 | Name         | Type         | Required | Default | Description                                                 | 
 |----          |----          |----      |----     |----                                                         |
 | id           | `string`     | required | null    | unique identifier                                           |
-| name         | `string`     | optional | null    | overrides 'EventType' name                                  |
-| description  | `string`     | optional | ""      | overrides 'EventType' description                           |
+| name         | `string`     | required | null    | heading name for the event  (max 100 char)                  |
+| description  | `string`     | required | ""      | details for the event (max 500 char)                        |
+| startDate    | `Date`       | required | today() | when the event takes place                                  |
 | rounds       | `number`     | optional | 0       | events can have "rounds" like in a competition              |
 | time         | `string`     | optional | null    | when the event starts, allows for "arrival time" type input |
-| startDate    | `Date`       | required | today() | when the event takes place                                  |
 | endDate      | `Date`       | optional | null    | when the event finishes                                     |
-| maxEntries   | `number`     | optional | null    | overrides `EventType` maxEntries                            |
+| maxEntries   | `number`     | optional | null    | maximum entries into the event                              |
 | entryCount   | `number`     | optional | null    | current entries associated to event instance                | 
 | complete     | `boolean`    | optional | false   | when had finsihed                                           |
 | cancellelled | `boolean`    | optional | false   | event no longer taking place                                |
 | isLive       | `boolean`    | optional | false   | event is in progress (streaming)                            |
-| active       | `boolean`    | optional | true    | event is available to query                                 |
-| type         | `eventType`  | optional | general | blueprint event type                                        |
-| color        | `string`     | optional | teal    | overrides `EventType` color                                 |
-| textColor    | `string`     | optional | teal    | overrides `EventType` textColor                             |
+| color        | `string`     | optional | teal    | highlight color                                             |
+| textColor    | `string`     | optional | teal    | font colour                                                 |
 | url          | `string`     | optional | null    | redirect url for a landing page or sign up                  |
 | isFull       | `boolean`    | optional | false   | no more entries to this event allowed                       |
-
-### Event Type Props
-
-| Name         | Type         | Required | Default       |  Description                   | 
-|----          |----          |----      |----           |----                            |
-| id           | `string`     | required | null          | unique identifier              |
-| name         | `string`     | required | "Title"       |                                |
-| description  | `string`     | required | "Description" |                                |
-| time         | `string`     | optional | null          |                                |
-| maxEntries   | `number`     | optional | null          |                                |
-| color        | `string`     | optional | teal          |                                |
-| textColor    | `string`     | optional | teal          |                                |
-| url          | `string`     | optional | null          |                                |
-| defaultPrice | `string`     | optional | null          |                                |
-| canRegister  | `string`     | optional | false         |                                |
-| eventType    | `string`     | required | "general"     |                                |
-
 
 
 
