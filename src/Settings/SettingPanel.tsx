@@ -8,10 +8,22 @@ interface SettingPanelProps {
   isLoading: boolean,
   setIsLoading: Function,
   isError: boolean,
-  setIsError: Function
+  setIsError: Function,
+  eventJson: any[],
+  setEventJson: Function
 }
 
-export default function SettingPanel({ open, setOpen, isLoading, setIsLoading, isError, setIsError }: SettingPanelProps) {
+export default function SettingPanel({ open, setOpen, isLoading, setIsLoading, isError, setIsError, eventJson, setEventJson }: SettingPanelProps) {
+
+
+  const handleEventJsonChange = (data: any) => {
+    try {
+      const parsed = JSON.parse(data);
+      setEventJson(parsed);
+    } catch (error) {
+      console.log("invalid JSON");     
+    }
+  }
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -89,6 +101,21 @@ export default function SettingPanel({ open, setOpen, isLoading, setIsLoading, i
                           <dd className="text-gray-900"><SettingSwitch stateValue={isError} setValue={setIsError} /></dd>
                         </div>
                       </dl>
+                    </div>
+                    <div>
+                      <label htmlFor="event-json" className="block text-sm font-medium text-gray-700">
+                        JSON Example
+                      </label>
+                      <div className="mt-1">
+                        <textarea
+                          onChange={(event) => handleEventJsonChange(event?.target.value)}
+                          id="event-json"
+                          name="event-json"
+                          rows={10}
+                          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 text-xs"
+                          defaultValue={JSON.stringify(eventJson, null, 4)}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

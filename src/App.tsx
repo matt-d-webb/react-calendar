@@ -48,6 +48,8 @@ export default function App(): ReactElement {
           isError,
           setIsError,
         }}
+        eventJson={data}
+        setEventJson={setData}
       />
     </div>
   );
