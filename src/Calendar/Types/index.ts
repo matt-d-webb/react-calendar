@@ -82,7 +82,7 @@ export interface CalendarEvent {
   cancelled: boolean;
   isLive: boolean;
   active: string;
-  type: EventType;
+  eventType: string;
   color: string | null;
   textColor: string | null;
   url: string;
