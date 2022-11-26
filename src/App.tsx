@@ -29,13 +29,15 @@ export default function App(): ReactElement {
       <div className="absolute beams inset-0 bg-no-repeat bg-bottom bg-slate-50 opacity-70"></div>
 
       {/* EXAMPLE USAGE */}
-      <Calendar
-        {...{
-          data, // Your data
-          isLoading,
-          isError,
-        }}
-      />
+      <div className="container">
+        <Calendar
+          {...{
+            data, // Your data
+            isLoading,
+            isError,
+          }}
+        />
+      </div>
 
       {/* FOR DEMO PURPOSES ONLY */}
       <SettingButton {...{ setOpen }} />
