@@ -11,7 +11,7 @@ export default function SettingSwitch({ stateValue, setValue }: SettingsSwitchPr
   return (
     <Switch
       checked={stateValue}
-      onChange={() => setValue()}
+      onChange={() => setValue(!stateValue)}
       className="flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
     >
       <span className="sr-only">Use setting</span>

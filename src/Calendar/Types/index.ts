@@ -22,6 +22,52 @@ export interface EventType {
   canRegister: boolean;
 }
 
+// Additionally:
+//eventTypeId:	string;
+//isLiveUrl:	string;
+//timeControl:	string;
+
+
+export interface APICalendarEvent {
+  id: string;
+  name: string;
+  description: string;
+  rounds: number;
+  // time: string  | null;
+  startDate: string;
+  endDate: string;
+  maxEntries: number;
+  entryCount: number;
+  complete: boolean;
+  cancelled: boolean;
+  isLive: boolean;
+  // active: string;
+  // type: EventType;
+  // color: string | null;
+  // textColor: string | null;
+  url: string;
+  // isFull: boolean
+}
+
+export interface EventInterface {
+  timeControl: string,
+  eventType: string,
+  time: string,
+  description: string,
+  id: string,
+  maxEntries: number,
+  name: string,
+  eventTypeId: string,
+  cancelled: false,
+  endDate: null,
+  rounds: number,
+  entryCount: number,
+  complete: boolean,
+  startDate: string,
+  isLive: boolean
+}
+
+
 export interface CalendarEvent {
   id: string;
   name: string;
@@ -36,7 +82,7 @@ export interface CalendarEvent {
   cancelled: boolean;
   isLive: boolean;
   active: string;
-  eventType: string;
+  // type: EventType;
   color: string | null;
   textColor: string | null;
   url: string;
