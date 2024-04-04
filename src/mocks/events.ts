@@ -12,12 +12,11 @@ const eventFactory = () => {
     id: uuid(),
     rounds: 5,
     timeControl: "various",
-    startDate: `${new Date().getFullYear()}-${generateRandomInteger(new Date().getMonth() + 1, new Date().getMonth() + 4)}-${generateRandomInteger(
-      0,
-      30
-    )}`,
+    startDate: `${new Date().getFullYear()}-${generateRandomInteger(
+      new Date().getMonth() + 1,
+      new Date().getMonth() + 4
+    )}-${generateRandomInteger(0, 30)}`,
     endDate: null,
-    maxEntries: 18,
     entryCount: 1,
     complete: false,
     cancelled: false,
@@ -46,11 +45,11 @@ const types = [
   {
     id: uuid(),
     name: "Open Rapidplay",
-    description: "ECF Graded 25min per player events.",
+    description: "FIDE Rated 25min per player events.",
     url: "/events/rapidplay",
     color: "bg-gradient-to-r from-purple-500 to-pink-500",
     textColor: "text-pink-700 font-medium",
-    maxEntries: 18,
+    maxEntries: 50,
     timeControl: "25 mins",
     eventType: "rapidplay",
     defaultPrice: "20",
@@ -72,11 +71,11 @@ const types = [
   {
     id: uuid(),
     name: "Open Congress",
-    description: "ECF Graded Long Play matches.",
+    description: "FIDE Rated Longplay Congress",
     url: "/events/congress",
     color: "bg-gradient-to-r from-green-500 to-cyan-500",
     textColor: "text-cyan-500 font-medium",
-    maxEntries: 18,
+    maxEntries: 100,
     timeControl: "60 mins",
     eventType: "congress",
     defaultPrice: "20",
@@ -84,4 +83,6 @@ const types = [
   },
 ];
 
-export const events: CalendarEvent[] = [...new Array(60)].map((_) => eventFactory());
+export const events: CalendarEvent[] = [...new Array(100)].map((_) =>
+  eventFactory()
+);

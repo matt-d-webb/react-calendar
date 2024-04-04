@@ -79,7 +79,6 @@ export default function Calendar(props: CalendarProps) {
           </div>
         </div>
       </div>
-
       {calendarView === "grid" && (
         <GridView
           {...{

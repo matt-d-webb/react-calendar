@@ -43,7 +43,7 @@ export function GridCard(props: GridCardProps) {
             </p>
           )}
         </div>
-        <p className="text-gray-900 text-base">{event.description}</p>
+        <p className="text-gray-900 text-sm font-thin">{event.description}</p>
       </div>
       <div className="absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl">
         {event.url && (
