@@ -4,12 +4,12 @@ import { classNames } from "../../utils/Classes";
 
 interface FilerMenuProps {
   filters: {
-    [key: string]: boolean
-  },
-  selectedMenuFilter: boolean,
-  setFilters: Function
-  setSelectedMenuFilter: Function
-  setNoneSelected: Function
+    [key: string]: boolean;
+  };
+  selectedMenuFilter: boolean;
+  setFilters: Function;
+  setSelectedMenuFilter: Function;
+  setNoneSelected: Function;
 }
 
 export default function FilterMenu({
@@ -19,7 +19,6 @@ export default function FilterMenu({
   setSelectedMenuFilter,
   setNoneSelected,
 }: FilerMenuProps) {
-
   const trueState = Object.keys(filters).reduce(
     (pre, cur) => ({ ...pre, [cur]: true }),
     {}
@@ -45,9 +44,7 @@ export default function FilterMenu({
     if (allSelected) {
       setSelectedMenuFilter(false /* "Deselect All =" */);
     }
-    setNoneSelected(
-      Object.values(filters).every((filter) => filter === false)
-    );
+    setNoneSelected(Object.values(filters).every((filter) => filter === false));
 
     // Note: "selected" is unchecked i.e false!
     setSomeSelected(Object.values(filters).some((filter) => !filter));
@@ -74,12 +71,10 @@ export default function FilterMenu({
         <Menu.Items className="z-10 origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           {Object.keys(filters).map((filterName: string, key: number) => {
             return (
-              <Menu.Item
-                key={key}
-                onClick={() => handleFilterItemClick(filterName)}
-              >
+              <Menu.Item key={key}>
                 {({ active }) => (
-                  <div
+                  <Menu.Button
+                    onClick={() => handleFilterItemClick(filterName)}
                     className={classNames(
                       active ? "bg-gray-100 text-cyan-900" : "text-gray-700",
                       "group flex items-center px-4 py-2 text-sm cursor-pointer"
@@ -92,22 +87,23 @@ export default function FilterMenu({
                       className="mr-3 text-cyan-500 focus:ring-cyan-400 focus:ring-opacity-25 border border-gray-300 rounded cursor-pointer"
                     />
                     {`${filterName[0].toUpperCase()}${filterName.slice(1)}`}
-                  </div>
+                  </Menu.Button>
                 )}
               </Menu.Item>
             );
           })}
           <div className="py-1 border-t border-gray-100">
-            <Menu.Item onClick={handleSelectAll}>
+            <Menu.Item>
               {({ active }) => (
-                <div
+                <Menu.Button
+                  onClick={handleSelectAll}
                   className={classNames(
                     active ? "bg-gray-100 text-fuchsia-700" : "text-gray-700",
                     "group flex items-center px-4 py-2 text-xs cursor-pointer text-center"
                   )}
                 >
                   {selectedMenuFilter ? "Select All" : "Deselect All"}
-                </div>
+                </Menu.Button>
               )}
             </Menu.Item>
           </div>
